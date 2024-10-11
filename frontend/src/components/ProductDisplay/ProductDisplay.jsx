@@ -20,7 +20,7 @@ const ProductDisplay = (props) => {
             </div>
             <div className="productdisplay-right">
                 <h1>{product.name}</h1>
-                <div className="productdisplay-right-star">
+                <div className="productdisplay-right-stars">
                     <img src={star_icon} alt="" />
                     <img src={star_icon} alt="" />
                     <img src={star_icon} alt="" />
@@ -37,7 +37,7 @@ const ProductDisplay = (props) => {
                    </div>
                 </div>
                 <div className="productdisplay-right-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quibusdam, nemo rerum hic nesciunt voluptates possimus reiciendis porro voluptatibus iusto sed qui expedita iure aut. Eveniet ex nihil pariatur accusantium.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quibusdam, nemo rerum hic nesciunt voluptates possimus reiciendis porro voluptatibus iusto sed qui expedita iure aut.
                 </div>
                 <div className="productdisplay-right-size">
                     <h1>Select Size</h1>
@@ -54,7 +54,7 @@ const ProductDisplay = (props) => {
                     <span>Category :</span>Women, T-Shirt, Crop Top
                     
                 </div>
-                <div className="productdisplay-right-tags">
+                <div className="productdisplay-right-category">
                     <span>Tags :</span>Modern, Latest
                 </div>
             </div>
