@@ -63,7 +63,7 @@
 
 @media(max-width:800px){
     .footer{
-        gap: 20px;
+        gap: 15px;
     }
     .footer-logo{
         gap: 10px;
@@ -76,13 +76,17 @@
         font-size: 25px;
     }
     .footer-links{
-        font-size: 14px;
+        font-size: 12px;
         gap: 10px;
     }
     .footer-social-icon img{
-        width: 22px;
+        width: 20px;
     }
     .footer-copyright{
-        font-size: 13px;
+        font-size: 12px;
+    }
+    .footer-copyright hr{
+        height: 2px;
+        width: 60%;
     }
 }
