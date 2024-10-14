@@ -31,9 +31,9 @@ exports.createProduct = async (req, res) => {
 };
 
 exports.deleteProduct = async(req,res)=>{
-    const id = req.params.id;
+    const {id} = req.params;
     try{
-        const product = await Product.findOneAndDelete(id);
+        const product = await Product.findOneAndDelete({id});
         res.status(200).json(product);
     }catch(err){
         console.log(err);
