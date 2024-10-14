@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const multer = require("multer");
 const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 require("dotenv").config({ path: "./config.env" });
 
@@ -40,6 +41,7 @@ app.post("/api/upload", upload.single("product"), (req, res) => {
 
 //routes
 app.use('/api/products',productRoutes)
+app.use('/api/users',userRoutes)
 
 //connect to database
 mongoose
