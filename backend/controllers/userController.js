@@ -58,3 +58,12 @@ exports.loginUser = async (req, res) => {
   else res.status(404).json({ success: false, error: "Invalid login credentials" });
 
 };
+
+
+//add to cart
+exports.addToCart = async(req,res)=>{
+   const userData = await User.findOne({_id:req.user._id});
+   userData.cartData[req.body.itemId]+=1;
+   const user = await User.findOneAndUpdate({_id:req.user._id},{cartData:userData.cartData});
+   res.status(200).json(user);
+};

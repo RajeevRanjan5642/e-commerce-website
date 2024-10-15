@@ -49,3 +49,13 @@ exports.getNewCollections = async(req,res)=>{
       console.log(err);
     }
 }
+
+exports.getPopularInWomen = async(req,res)=>{
+  try{
+    const products = await Product.find({category:'women'});
+    const popularInWomen = products.slice(0,4);
+    res.status(200).json(popularInWomen);
+  }catch(err){
+    console.log(err);
+  }
+}

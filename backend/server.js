@@ -39,6 +39,7 @@ app.post("/api/upload", upload.single("product"), (req, res) => {
   });
 });
 
+
 //routes
 app.use('/api/products',productRoutes)
 app.use('/api/users',userRoutes)

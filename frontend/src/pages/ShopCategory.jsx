@@ -5,8 +5,7 @@ import Item from './../components/Item/Item'
 import dropdown_icon from './../components/assets/dropdown_icon.png'
 
 const ShopCategory = (props) => {
-    const {all_product} = useContext(ShopContext)
-    console.log(all_product);
+    const {all_product} = useContext(ShopContext);
     return ( 
         <div className="shop-category">
             <img className="shopCategory-banner" src={props.banner} alt="" />
