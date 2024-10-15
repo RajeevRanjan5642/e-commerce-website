@@ -39,3 +39,13 @@ exports.deleteProduct = async(req,res)=>{
         console.log(err);
     }
 }
+
+exports.getNewCollections = async(req,res)=>{
+    try{
+      const products = await Product.find({});
+      const newCollection = products.slice(-8);
+      res.status(200).json(newCollection);
+    }catch(err){
+      console.log(err);
+    }
+}
