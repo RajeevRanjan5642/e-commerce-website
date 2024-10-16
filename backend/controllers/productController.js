@@ -1,4 +1,5 @@
 const Product = require("./../models/productModel");
+const fs = require('fs');
 
 exports.getAllProducts = async(req,res)=>{
     try{
@@ -33,7 +34,10 @@ exports.createProduct = async (req, res) => {
 exports.deleteProduct = async(req,res)=>{
     const {id} = req.params;
     try{
-        const product = await Product.findOneAndDelete({id});
+        const product = await Product.findById({id});
+        //delete the image from folder
+        fs.unlink(`upload/images/${food.image}`,()=>{});
+        await Product.findByIdAndDelete({id});
         res.status(200).json(product);
     }catch(err){
         console.log(err);
