@@ -11,6 +11,7 @@ exports.getAllProducts = async(req,res)=>{
 }
 
 exports.createProduct = async (req, res) => {
+  const image_filename = `${req.file.filename}`;
   const products = await Product.find({});
   const length = products.length;
   let id=1;
@@ -20,7 +21,7 @@ exports.createProduct = async (req, res) => {
     const product = await Product.create({
       id,
       name,
-      image,
+      image:image_filename,
       category,
       new_price,
       old_price,
