@@ -4,6 +4,7 @@ const cors = require("cors");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 const connectDB = require("./db");
 
@@ -22,7 +23,9 @@ app.use("/images", express.static("upload/images"));
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/order",orderRoutes);
 
+//connect to db
 connectDB();
 
 app.listen(port, () => {

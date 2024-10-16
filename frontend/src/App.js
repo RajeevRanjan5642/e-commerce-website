@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Shop from "./pages/Shop";
 import ShopCategory from "./pages/ShopCategory";
@@ -9,11 +9,11 @@ import men_banner from "./components/assets/banner_mens.png";
 import women_banner from "./components/assets/banner_women.png";
 import kid_banner from "./components/assets/banner_kids.png";
 import Footer from "./components/Footer/Footer";
+import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<Shop />} />
@@ -34,9 +34,9 @@ function App() {
           </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignup />} />
+          <Route path="/order" element={<PlaceOrder/>}/>
         </Routes>
         <Footer />
-      </BrowserRouter>
     </div>
   );
 }
