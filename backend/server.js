@@ -1,18 +1,18 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 const multer = require("multer");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
+const connectDB = require("./db");
 
 require("dotenv").config({ path: "./config.env" });
 
-const port = process.env.PORT || 4000;
-//app instance
+// app config
 const app = express();
+const port = process.env.PORT || 4000;
 
-//middleware to parse incoming json requests
+//middleware
 app.use(express.json());
 app.use(cors());
 
@@ -44,12 +44,10 @@ app.post("/api/upload", upload.single("product"), (req, res) => {
 app.use('/api/products',productRoutes)
 app.use('/api/users',userRoutes)
 
-//connect to database
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`server is listening at port ${port}.`);
-    });
-  })
-  .catch((err) => console.log(err));
+connectDB();
+
+app.listen(port, () => {
+  console.log(`server is listening at port ${port}.`);
+});
+
+
