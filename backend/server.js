@@ -1,9 +1,10 @@
 const express = require("express");
-const path = require("path");
 const cors = require("cors");
 
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
+const cartRoutes = require("./routes/cartRoutes");
+
 const connectDB = require("./db");
 
 require("dotenv").config({ path: "./config.env" });
@@ -20,6 +21,7 @@ app.use(cors());
 app.use("/images", express.static("upload/images"));
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/cart", cartRoutes);
 
 connectDB();
 

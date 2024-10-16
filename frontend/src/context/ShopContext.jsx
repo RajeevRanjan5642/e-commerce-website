@@ -26,7 +26,7 @@ const ShopContextProvider = (props) => {
             }
             // else throw new Error(json.error)
             if(localStorage.getItem('auth-token')){
-                await fetch('http://localhost:4000/api/users/getCart',{
+                await fetch('http://localhost:4000/api/cart/getCart',{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
@@ -42,7 +42,7 @@ const ShopContextProvider = (props) => {
     const addToCart = async (itemId) =>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}));
         if(localStorage.getItem('auth-token')){
-            await fetch('http://localhost:4000/api/users/addToCart',{
+            await fetch('http://localhost:4000/api/cart/addToCart',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
@@ -56,7 +56,7 @@ const ShopContextProvider = (props) => {
     const removeFromCart = async (itemId) =>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}));
         if(localStorage.getItem('auth-token')){
-            await fetch('http://localhost:4000/api/users/removeFromCart',{
+            await fetch('http://localhost:4000/api/cart/removeFromCart',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
