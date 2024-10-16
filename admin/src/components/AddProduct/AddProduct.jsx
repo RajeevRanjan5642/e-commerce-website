@@ -7,7 +7,6 @@ const AddProduct = () => {
     const [image,setImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
         name: "",
-        image:"",
         category:"women",
         new_price:"",
         old_price:""
@@ -23,29 +22,29 @@ const AddProduct = () => {
     }
 
     const addProduct = async () =>{
-        let product = productDetails;
 
-        let formData = new FormData();
-        formData.append('product',image);
-        const response = await fetch('http://localhost:4000/api/upload',{
-           method:'POST',
-           body:formData,
+        const formData = new FormData();
+        formData.append("name",productDetails.name);
+        formData.append("product",image);
+        formData.append("category",productDetails.category);
+        formData.append("new_price",productDetails.new_price);
+        formData.append("old_price",productDetails.old_price);
+    
+        const response = await fetch('http://localhost:4000/api/products',{
+            method:'POST',
+            body:formData,
         });
-
-        const json = await response.json();
-        if(response.ok)
-        {
-            product.image = json.image_url;
-            //send product to create product api
-            const response = await fetch('http://localhost:4000/api/products',{
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json',
-                },
-                body:JSON.stringify(product),
+        if(response.ok){
+            setProductDetails({
+                name: "",
+                category:"women",
+                new_price:"",
+                old_price:""
             });
-            response.ok?alert("product added"):alert("failed");
+            setImage(false);
+            alert('product added');
         }
+        else alert("failed");
     }
 
     return ( 

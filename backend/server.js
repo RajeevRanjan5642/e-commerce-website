@@ -18,13 +18,11 @@ app.use(cors());
 
 //api endpoints
 app.use("/images", express.static("upload/images"));
-app.use('/api/products',productRoutes)
-app.use('/api/users',userRoutes)
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 connectDB();
 
 app.listen(port, () => {
   console.log(`server is listening at port ${port}.`);
 });
-
-
