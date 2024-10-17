@@ -25,12 +25,12 @@ const ShopContextProvider = (props) => {
                 setAll_product(json);
             }
             // else throw new Error(json.error)
-            if(localStorage.getItem('auth-token')){
+            if(localStorage.getItem('authorization')){
                 await fetch('http://localhost:4000/api/cart/getCart',{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
-                        'auth-token': `${localStorage.getItem('auth-token')}`,
+                        'authorization': `Bearer ${localStorage.getItem('authorization')}`,
                     },
                     body:"",
                 }).then((response)=>response.json()).then((data)=>setCartItems(data));
@@ -41,12 +41,12 @@ const ShopContextProvider = (props) => {
 
     const addToCart = async (itemId) =>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}));
-        if(localStorage.getItem('auth-token')){
+        if(localStorage.getItem('authorization')){
             await fetch('http://localhost:4000/api/cart/addToCart',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                    'authorization': `Bearer ${localStorage.getItem('authorization')}`,
                 },
                 body:JSON.stringify({'itemId':itemId}),
             }).then((response)=>response.json()).then((data)=>{});
@@ -55,12 +55,12 @@ const ShopContextProvider = (props) => {
 
     const removeFromCart = async (itemId) =>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}));
-        if(localStorage.getItem('auth-token')){
+        if(localStorage.getItem('authorization')){
             await fetch('http://localhost:4000/api/cart/removeFromCart',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                    'authorization': `Bearer ${localStorage.getItem('authorization')}`,
                 },
                 body:JSON.stringify({'itemId':itemId}),
             }).then((response)=>response.json()).then((data)=>{});

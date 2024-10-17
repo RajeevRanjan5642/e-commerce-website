@@ -1,4 +1,6 @@
 import React,{useState} from "react";
+import {jwtDecode} from 'jwt-decode';
+import { useEffect } from "react";
 import './CSS/LoginSignup.css'
 
 const LoginSignup = () => {
@@ -10,6 +12,34 @@ const LoginSignup = () => {
         password:"",
     })
 
+      const logoutUser = () => {
+        localStorage.removeItem('authorization');
+        window.location.replace('/');
+      };
+
+      const checkTokenExpiration = () => {
+        const token = localStorage.getItem('authorization');
+        if (token) {
+          const decodedToken = jwtDecode(token);
+          const currentTime = Date.now() / 1000; // in seconds
+      
+          // If token is expired, logout the user
+          if (decodedToken.exp < currentTime) {
+            logoutUser();
+          } else {
+            // Set timeout to log out the user when the token expires
+            const timeLeft = decodedToken.exp * 1000 - Date.now();
+            setTimeout(() => {
+              logoutUser();
+            }, timeLeft);
+          }
+        }
+      };
+      
+      useEffect(() => {
+        checkTokenExpiration();
+    },[]);
+
     const login = async () =>{
         const response = await fetch('http://localhost:4000/api/users/login',{
             method:'POST',
@@ -20,12 +50,10 @@ const LoginSignup = () => {
         });
         const json = await response.json();
         if(response.ok){
-            localStorage.setItem('auth-token',json.token);
+           localStorage.setItem("authorization", json.token);
+           checkTokenExpiration();
             window.location.replace("/");
         }
-        else{
-            alert(json.error);
-        }  
     }
 
     const signup = async () =>{
@@ -38,11 +66,8 @@ const LoginSignup = () => {
         });
         const json = await response.json();
         if(response.ok){
-            localStorage.setItem('auth-token',json.token);
+            localStorage.setItem('authorization',json.token);
             window.location.replace("/");
-        }
-        else{
-            alert(json.error);
         }
     }
 

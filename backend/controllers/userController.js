@@ -4,7 +4,7 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const errorHandler = require("../utils/errorHandler");
 
-exports.signupUser = async (req, res) => {
+exports.signupUser = async (req, res,next) => {
   const { name, email, password, cartData } = req.body;
 
   // validation
@@ -49,7 +49,7 @@ exports.signupUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1h",
     });
-    res.status(200).json({ email, token });
+    res.status(200).json({ token });
   } catch (err) {
     next(err);
   }
@@ -71,7 +71,7 @@ exports.loginUser = async (req, res, next) => {
       const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
         expiresIn: "1h",
       });
-      res.status(200).json({ email, token });
+      res.status(200).json({ token });
     }
   } catch (err) {
     next(err);
