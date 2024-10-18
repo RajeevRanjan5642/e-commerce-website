@@ -24,16 +24,20 @@ const ShopContextProvider = (props) => {
             if(response.ok){
                 setAll_product(json);
             }
+            else alert(json.error);
             // else throw new Error(json.error)
-            if(localStorage.getItem('auth-token')){
-                await fetch('http://localhost:4000/api/cart/getCart',{
+            if(localStorage.getItem('authorization')){
+                const response = await fetch('http://localhost:4000/api/cart/getCart',{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
-                        'auth-token': `${localStorage.getItem('auth-token')}`,
+                        'authorization': `Bearer ${localStorage.getItem('authorization')}`,
                     },
                     body:"",
-                }).then((response)=>response.json()).then((data)=>setCartItems(data));
+                });
+                const json = await response.json();
+                if(response.ok) setCartItems(json);
+                else alert(json.error);
             }
         };
         fetchData();
@@ -41,29 +45,37 @@ const ShopContextProvider = (props) => {
 
     const addToCart = async (itemId) =>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}));
-        if(localStorage.getItem('auth-token')){
-            await fetch('http://localhost:4000/api/cart/addToCart',{
+        if(localStorage.getItem('authorization')){
+            const response = fetch('http://localhost:4000/api/cart/addToCart',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                    'authorization': `Bearer ${localStorage.getItem('authorization')}`,
                 },
                 body:JSON.stringify({'itemId':itemId}),
-            }).then((response)=>response.json()).then((data)=>{});
+            });
+            const json = await response.json();
+            if(!response.ok){
+                alert(json.error);
+            }
         }
     }
 
     const removeFromCart = async (itemId) =>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}));
-        if(localStorage.getItem('auth-token')){
-            await fetch('http://localhost:4000/api/cart/removeFromCart',{
+        if(localStorage.getItem('authorization')){
+            const response = await fetch('http://localhost:4000/api/cart/removeFromCart',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                    'authorization': `Bearer ${localStorage.getItem('authorization')}`,
                 },
                 body:JSON.stringify({'itemId':itemId}),
-            }).then((response)=>response.json()).then((data)=>{});
+            });
+            const json = await response.json();
+            if(!response.ok){
+                alert(json.error);
+            }
         }
     }
 

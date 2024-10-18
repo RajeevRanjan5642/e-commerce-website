@@ -1,14 +1,17 @@
 import React,{useState} from "react";
+// import {jwtDecode} from 'jwt-decode';
+// import { useEffect } from "react";
 import './CSS/LoginSignup.css'
 
 const LoginSignup = () => {
 
     const [state, setState] = useState("Login");
+    const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         name:"",
         email:"",
         password:"",
-    })
+    });
 
     const login = async () =>{
         const response = await fetch('http://localhost:4000/api/users/login',{
@@ -20,12 +23,12 @@ const LoginSignup = () => {
         });
         const json = await response.json();
         if(response.ok){
-            localStorage.setItem('auth-token',json.token);
+           localStorage.setItem("authorization", json.token);
             window.location.replace("/");
         }
         else{
-            alert(json.error);
-        }  
+            setError(json.error);
+        }
     }
 
     const signup = async () =>{
@@ -38,11 +41,11 @@ const LoginSignup = () => {
         });
         const json = await response.json();
         if(response.ok){
-            localStorage.setItem('auth-token',json.token);
+            localStorage.setItem('authorization',json.token);
             window.location.replace("/");
         }
         else{
-            alert(json.error);
+            setError(json.error);
         }
     }
 
@@ -59,6 +62,7 @@ const LoginSignup = () => {
                     <input name="email" value={formData.email} onChange={changeHandler} type="email" placeholder="Email Address" />
                     <input name="password" value={formData.password} onChange={changeHandler} type="password" placeholder="Password"/>
                 </div>
+                {error && <div className="error">{error}</div>}
                 <button onClick={()=>{state==='Login'?login():signup()}}>Continue</button>
                 {state==='Sign Up'?
                 <p className="loginsignup-login">

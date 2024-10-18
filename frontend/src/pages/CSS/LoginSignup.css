@@ -73,6 +73,16 @@
     font-weight: 500;
 }
 
+.error {
+    width: 100%;
+    padding: 10px;
+    background: #fbdcdc;
+    border: 1px solid red;
+    color: red;
+    border-radius: 4px;
+    margin: 20px 0;
+  }
+
 @media(max-width:800px){
     .loginsignup-container{
         width: 350px;
