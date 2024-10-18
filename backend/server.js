@@ -4,6 +4,7 @@ const cors = require("cors");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 const connectDB = require("./db");
 
@@ -22,6 +23,7 @@ app.use("/images", express.static("upload/images"));
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/orders",orderRoutes);
 
 //error handling middleware
 app.use((err, req, res, next) => {
@@ -33,6 +35,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+//connect to db
 connectDB();
 
 app.listen(port, () => {

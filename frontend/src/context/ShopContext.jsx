@@ -2,20 +2,10 @@ import React, {createContext, useEffect, useState} from 'react';
 
 export const ShopContext = createContext(null);
 
-const getDefaultCart = ()=>{
-
-    let cart = {};
-    for(let idx=0; idx<300+1; idx++){
-        cart[idx] = 0;
-    }
-    return cart;
-
-}
-
 const ShopContextProvider = (props) => {
 
     const [all_product, setAll_product] = useState([]);
-    const [cartItems, setCartItems] = useState(getDefaultCart());
+    const [cartItems, setCartItems] = useState({});
 
     useEffect(()=>{
         const fetchData = async()=>{
@@ -44,9 +34,14 @@ const ShopContextProvider = (props) => {
     },[])
 
     const addToCart = async (itemId) =>{
-        setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}));
+        if (!cartItems[itemId]) {
+            setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
+        }
+        else {
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
+        }
         if(localStorage.getItem('authorization')){
-            const response = fetch('http://localhost:4000/api/cart/addToCart',{
+            const response = await fetch('http://localhost:4000/api/cart/addToCart',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
