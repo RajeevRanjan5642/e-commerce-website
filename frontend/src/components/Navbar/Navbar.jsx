@@ -16,7 +16,7 @@ const Navbar = () => {
     }
 
     const clickHandler=()=>{
-        localStorage.removeItem('auth-token');
+        localStorage.removeItem('authorization');
         window.location.replace('/');
     }
 
@@ -34,7 +34,7 @@ const Navbar = () => {
                 <li onClick={()=>setMenu("kids")}><Link style={{textDecoration: 'none'}} to="/kids">Kids</Link>{menu==="kids"?<hr/>:<></>}</li>
             </ul>
             <div className="nav-login-cart">
-                {localStorage.getItem('auth-token')?<button onClick={clickHandler}>Logout</button>:<Link to="/login"><button>Login</button></Link>}
+                {localStorage.getItem('authorization')?<button onClick={clickHandler}>Logout</button>:<Link to="/login"><button>Login</button></Link>}
                 <Link to="/cart"><img src={cart_icon} alt="" /></Link>
                 <div className="nav-cart-count">{getTotalCartItems()}</div>
             </div>
