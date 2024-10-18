@@ -23,7 +23,7 @@ app.use("/images", express.static("upload/images"));
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
-app.use("/api/order",orderRoutes);
+app.use("/api/orders",orderRoutes);
 
 //error handling middleware
 app.use((err, req, res, next) => {

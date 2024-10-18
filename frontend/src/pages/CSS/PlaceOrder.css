@@ -4,9 +4,7 @@
     align-items: start;
     justify-content: space-between;
     gap: 50px;
-    margin: auto;
-    margin-top: 100px;
-    width: 80%;
+    margin: 100px 80px;
 }
 
 .place-order-left{
@@ -22,11 +20,11 @@
 
 .place-order-left input{
     margin-bottom: 15px;
-    width: 100%;
+    width:100%;
     padding: 10px;
     border: 1px solid #c5c5c5;
     border-radius: 4px;
-    outline: none;
+    outline-color: tomato;
 }
 
 .place-order-left .multi-fields{
@@ -36,7 +34,7 @@
 
 .place-order-right{
     width: 100%;
-    max-width: max(40%, 500px);
+    max-width: max(40%,500px);
 }
 
 .cart-total{
