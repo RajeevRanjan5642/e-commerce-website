@@ -25,7 +25,15 @@ app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/order",orderRoutes);
 
-//connect to db
+//error handling middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  res.status(statusCode).json({
+    success: false,
+    error: message,
+  });
+});
 connectDB();
 
 app.listen(port, () => {

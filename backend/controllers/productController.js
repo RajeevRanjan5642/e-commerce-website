@@ -1,16 +1,17 @@
 const Product = require("./../models/productModel");
+const errorHandler = require("./../utils/errorHandler");
 const fs = require('fs');
 
-exports.getAllProducts = async(req,res)=>{
+exports.getAllProducts = async(req,res,next)=>{
     try{
         const products = await Product.find({});
         res.status(200).json(products);
     }catch(err){
-        console.log(err);
+        next(err);
     }
 }
 
-exports.createProduct = async (req, res) => {
+exports.createProduct = async (req, res,next) => {
   const image_filename = `http://localhost:4000/images/${req.file.filename}`;
   const products = await Product.find({});
   const length = products.length;
@@ -28,11 +29,11 @@ exports.createProduct = async (req, res) => {
     });
     res.status(200).json(product);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };
 
-exports.deleteProduct = async(req,res)=>{
+exports.deleteProduct = async(req,res,next)=>{
     const {id} = req.params;
     try{
         const product = await Product.findOne({id});
@@ -41,26 +42,26 @@ exports.deleteProduct = async(req,res)=>{
         await Product.findOneAndDelete({id});
         res.status(200).json(product);
     }catch(err){
-        console.log(err);
+        next(err);
     }
 }
 
-exports.getNewCollections = async(req,res)=>{
+exports.getNewCollections = async(req,res,next)=>{
     try{
       const products = await Product.find({});
       const newCollection = products.slice(-8);
       res.status(200).json(newCollection);
     }catch(err){
-      console.log(err);
+      next(err);
     }
 }
 
-exports.getPopularInWomen = async(req,res)=>{
+exports.getPopularInWomen = async(req,res,next)=>{
   try{
     const products = await Product.find({category:'women'});
     const popularInWomen = products.slice(0,4);
     res.status(200).json(popularInWomen);
   }catch(err){
-    console.log(err);
+    next(err);
   }
 }

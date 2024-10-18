@@ -1,61 +1,80 @@
 const User = require("./../models/userModel");
 const jwt = require("jsonwebtoken");
+const validator = require("validator");
 const bcrypt = require("bcryptjs");
+const errorHandler = require("../utils/errorHandler");
 
-exports.signupUser = async (req, res) => {
+exports.signupUser = async (req, res,next) => {
   const { name, email, password, cartData } = req.body;
 
-  let check = await User.findOne({ email });
-  if (check) {
-    return res.status(400).json({
-      success: false,
-      error: "Email already exists",
+  // validation
+  try {
+    if (!name || !email || !password) {
+      return next(
+        errorHandler(400, "Name, email and password are required !!")
+      );
+    }
+    if (!validator.isEmail(email)) {
+      return next(400, errorHandler("Email is not valid!"));
+    }
+    if (!validator.isStrongPassword(password)) {
+      return next(400, errorHandler("Please use a strong password!"));
+    }
+
+    let existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return next(400, errorHandler("Email already in use."));
+    }
+
+    let cart = {};
+    for (let i = 0; i < 300; i++) {
+      cart[i] = 0;
+    }
+
+    //generate salt
+    const salt = await bcrypt.genSalt(10);
+    //hashing
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    //create the user
+    const user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      cartData: cart,
     });
+
+    //jwt authentication
+    //create token
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
+    });
+    res.status(200).json({ token });
+  } catch (err) {
+    next(err);
   }
-
-  let cart = {};
-  for (let i = 0; i < 300; i++) {
-    cart[i] = 0;
-  }
-
-  //generate salt
-  const salt = await bcrypt.genSalt(10);
-  //hashing
-  const hashedPassword = await bcrypt.hash(password, salt);
-
-  //create the user
-  const user = await User.create({
-    name,
-    email,
-    password: hashedPassword,
-    cartData: cart,
-  });
-
-  //jwt authentication
-  //create token
-  const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-    expiresIn: "1h",
-  });
-
-  res.status(200).json({ success: true, token });
 };
 
 //loginUser
-exports.loginUser = async (req, res) => {
+exports.loginUser = async (req, res, next) => {
   const { email, password } = req.body;
-  let user = await User.findOne({ email });
-  if (user) {
-    //compare password
-    const isMatch = bcrypt.compare(password, user.password);
+  try {
+    if (!email || !password) {
+      return next(errorHandler(400, "Email and password required !!"));
+    }
+    const user = await User.findOne({ email });
+    if (!user) {
+      return next(errorHandler(400, "Invalid login credentials"));
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
       const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-        expiresIn: "1h",
+        expiresIn: "1d",
       });
-      res.status(200).json({ success: true, token });
+      res.status(200).json({ token });
     }
-    else res.status(404).json({ success: false, error: "Invalid login credentials" });
+    else return next(errorHandler(400, "Invalid login credentials"));
+  } catch (err) {
+    next(err);
   }
-  else res.status(404).json({ success: false, error: "Invalid login credentials" });
-
 };
-
