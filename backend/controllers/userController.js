@@ -47,7 +47,7 @@ exports.signupUser = async (req, res,next) => {
     //jwt authentication
     //create token
     const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-      expiresIn: "1h",
+      expiresIn: "1d",
     });
     res.status(200).json({ token });
   } catch (err) {
@@ -66,13 +66,14 @@ exports.loginUser = async (req, res, next) => {
     if (!user) {
       return next(errorHandler(400, "Invalid login credentials"));
     }
-    const isMatch = bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
       const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-        expiresIn: "1h",
+        expiresIn: "1d",
       });
       res.status(200).json({ token });
     }
+    else return next(errorHandler(400, "Invalid login credentials"));
   } catch (err) {
     next(err);
   }
