@@ -80,11 +80,32 @@ exports.verifyOrder = async (req, res, next) => {
 };
 
 // use orders for frontend
-exports.userOrders = async(req,res,next)=>{
+exports.userOrders = async (req, res, next) => {
   const { _id } = req.user;
-  try{
-    const orders = await Order.find({userId:_id})
+  try {
+    const orders = await Order.find({ userId: _id });
     res.status(200).json(orders);
+  } catch (err) {
+    next(err);
+  }
+};
+
+//listing orders for admin panel
+exports.getAllOrders = async (req, res, next) => {
+  try {
+    const orders = await Order.find({});
+    res.status(200).json(orders);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// api for updating the status
+exports.updateStatus = async(req,res,next)=>{
+  const {orderId,status} = req.body;
+  try{
+    const order = await Order.findByIdAndUpdate(orderId,{status},{new:true});
+    res.status(200).json(order);
   }catch(err){
     next(err);
   }
