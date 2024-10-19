@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import './AddProduct.css';
-import upload_area from './../../assets/upload_area.svg'
+import upload_area from './../../assets/upload_area.svg';
+import {ToastContainer,toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddProduct = () => {
     
@@ -46,7 +48,7 @@ const AddProduct = () => {
             setImage(false);
             alert('product added');
         }
-        else alert("failed");
+        else toast.error("failed");
     }
 
     return ( 
@@ -80,6 +82,7 @@ const AddProduct = () => {
                 </div>
                 <button onClick={addProduct} className="addproduct-btn">ADD</button>
             </div>
+            <ToastContainer/>
         </div>
      );
 }

@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from "react";
 import './ListProduct.css';
-import cross_icon from './../../assets/cross_icon.png'
+import cross_icon from './../../assets/cross_icon.png';
+import {ToastContainer,toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const backend_url = process.env.REACT_APP_API_URL;
 
@@ -9,9 +11,12 @@ const ListProduct = () => {
     const [allproducts, setAllProducts] = useState([]);
 
     const fetchInfo = async ()=>{
-        await fetch(`${backend_url}/api/products`)
-        .then((res)=>res.json())
-        .then((data)=>setAllProducts(data));
+        const response = await fetch(`${backend_url}/api/products`);
+        const json = response.json();
+        if(response.ok){
+            setAllProducts(json);
+        }
+        else toast.error(json.error);
     }
 
     useEffect(()=>{
@@ -19,12 +24,14 @@ const ListProduct = () => {
     },[])
 
     const removeProduct = async (id)=>{
-        await fetch(`${backend_url}/api/products/${id}`,{
+        const response = await fetch(`${backend_url}/api/products/${id}`,{
             method:'DELETE',
             headers:{
                 'Content-Type':'application/json'
             }
-        })
+        });
+        const json = response.json();
+        if(!response.ok) toast.error(json.error);
         await fetchInfo();
     }
 
@@ -54,6 +61,7 @@ const ListProduct = () => {
                     </>
                 })}
             </div>
+            <ToastContainer/>
         </div>
      );
 }
