@@ -6,10 +6,11 @@ const ShopContextProvider = (props) => {
 
     const [all_product, setAll_product] = useState([]);
     const [cartItems, setCartItems] = useState({});
+    const backend_url = process.env.REACT_APP_API_URL
 
     useEffect(()=>{
         const fetchData = async()=>{
-            const response = await fetch('http://localhost:4000/api/products');
+            const response = await fetch(`${backend_url}/api/products`);
             const json = await response.json();
             if(response.ok){
                 setAll_product(json);
@@ -17,7 +18,7 @@ const ShopContextProvider = (props) => {
             else alert(json.error);
             // else throw new Error(json.error)
             if(localStorage.getItem('authorization')){
-                const response = await fetch('http://localhost:4000/api/cart/getCart',{
+                const response = await fetch(`${backend_url}/api/cart/getCart`,{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
@@ -41,7 +42,7 @@ const ShopContextProvider = (props) => {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
         }
         if(localStorage.getItem('authorization')){
-            const response = await fetch('http://localhost:4000/api/cart/addToCart',{
+            const response = await fetch(`${backend_url}/api/cart/addToCart`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
@@ -59,7 +60,7 @@ const ShopContextProvider = (props) => {
     const removeFromCart = async (itemId) =>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}));
         if(localStorage.getItem('authorization')){
-            const response = await fetch('http://localhost:4000/api/cart/removeFromCart',{
+            const response = await fetch(`${backend_url}/api/cart/removeFromCart`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',

@@ -12,9 +12,9 @@ const LoginSignup = () => {
         email:"",
         password:"",
     });
-
+    const backend_url = process.env.REACT_APP_API_URL;
     const login = async () =>{
-        const response = await fetch('http://localhost:4000/api/users/login',{
+        const response = await fetch(`${backend_url}/api/users/login`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -32,7 +32,7 @@ const LoginSignup = () => {
     }
 
     const signup = async () =>{
-        const response = await fetch('http://localhost:4000/api/users/signup',{
+        const response = await fetch(`${backend_url}/api/users/signup`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
