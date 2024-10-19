@@ -38,7 +38,7 @@ const CartItems = () => {
                 return null;
             })}
             <div className="cartitems-down">
-                <div className="cartitems-total">
+                <div className="cartitems-total card">
                     <h1>Cart Totals</h1>
                     <div>
                         <div className="cartitems-total-item">

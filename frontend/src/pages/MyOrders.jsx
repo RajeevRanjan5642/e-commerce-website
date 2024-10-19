@@ -33,7 +33,7 @@ const MyOrders = () => {
         <div className="container">
             {data.map((order,index)=>{
                 return (
-                    <div key={index} className='my-orders-order'>
+                    <div key={index} className='my-orders-order card'>
                         <img src={parcel_icon} alt="" />
                         <p>{order.items.map((item,index)=>{
                             if (index === order.items.length-1) {

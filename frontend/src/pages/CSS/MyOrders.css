@@ -1,10 +1,13 @@
 .my-orders{
-    margin: 50px 30px;
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .my-orders .container{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     margin-top: 30px;
 }
 .my-orders-order{
@@ -13,16 +16,13 @@
     align-items: center;
     gap: 30px;
     font-size: 14px;
-    padding: 10px 20px;
     color: #454545;
-    border: 1px solid tomato;
-    border-radius: 4px;
 }
 .my-orders-order img{
     width: 50px;
 }
 .my-orders-order p span{
-    color: tomato;
+    color: #ff5a5a;
 }
 .my-orders-order p b{
     font-weight: 500;
