@@ -1,4 +1,6 @@
 import React, {createContext, useEffect, useState} from 'react';
+import {ToastContainer,toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ShopContext = createContext(null);
 
@@ -6,7 +8,8 @@ const ShopContextProvider = (props) => {
 
     const [all_product, setAll_product] = useState([]);
     const [cartItems, setCartItems] = useState({});
-    const backend_url = process.env.REACT_APP_API_URL
+    const backend_url = process.env.REACT_APP_API_URL;
+    const token = localStorage.getItem('authorization');
 
     useEffect(()=>{
         const fetchData = async()=>{
@@ -22,13 +25,13 @@ const ShopContextProvider = (props) => {
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
-                        'authorization': `Bearer ${localStorage.getItem('authorization')}`,
+                        'authorization': `Bearer ${token}`,
                     },
                     body:"",
                 });
                 const json = await response.json();
                 if(response.ok) setCartItems(json);
-                else alert(json.error);
+                else toast.error(json.error);
             }
         };
         fetchData();
@@ -46,13 +49,13 @@ const ShopContextProvider = (props) => {
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
-                    'authorization': `Bearer ${localStorage.getItem('authorization')}`,
+                    'authorization': `Bearer ${token}`,
                 },
                 body:JSON.stringify({'itemId':itemId}),
             });
             const json = await response.json();
             if(!response.ok){
-                alert(json.error);
+                toast.error(json.error);
             }
         }
     }
@@ -64,13 +67,13 @@ const ShopContextProvider = (props) => {
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
-                    'authorization': `Bearer ${localStorage.getItem('authorization')}`,
+                    'authorization': `Bearer ${token}`,
                 },
                 body:JSON.stringify({'itemId':itemId}),
             });
             const json = await response.json();
             if(!response.ok){
-                alert(json.error);
+                toast.error(json.error);
             }
         }
     }
@@ -98,6 +101,7 @@ const ShopContextProvider = (props) => {
 
     return (
         <ShopContext.Provider value={contextValue}>
+            <ToastContainer/>
             {props.children}
         </ShopContext.Provider>
     )

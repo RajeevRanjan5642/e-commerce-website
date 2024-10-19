@@ -1,6 +1,4 @@
 import React,{useState} from "react";
-// import {jwtDecode} from 'jwt-decode';
-// import { useEffect } from "react";
 import {ToastContainer,toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './CSS/LoginSignup.css'
