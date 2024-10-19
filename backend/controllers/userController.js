@@ -15,15 +15,15 @@ exports.signupUser = async (req, res,next) => {
       );
     }
     if (!validator.isEmail(email)) {
-      return next(400, errorHandler("Email is not valid!"));
+      return next(errorHandler(400, "Email is not valid!"));
     }
     if (!validator.isStrongPassword(password)) {
-      return next(400, errorHandler("Please use a strong password!"));
+      return next(errorHandler(400, "Please use a strong password!"));
     }
 
     let existingUser = await User.findOne({ email });
     if (existingUser) {
-      return next(400, errorHandler("Email already in use."));
+      return next(errorHandler(400, "Email already in use."));
     }
 
     let cart = {};
