@@ -1,2 +1,2 @@
-## SHOPPER
+## FashionFrenzy
 E-commerce web app
