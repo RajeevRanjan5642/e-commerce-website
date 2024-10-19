@@ -1,67 +1,109 @@
 
 .place-order{
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    gap: 50px;
-    margin: 100px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 80%;
 }
 
-.place-order-left{
-    width: 100%;
-    max-width: max(30%,500px);
+.place-order-left, .place-order-right{
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+.card {
+  padding: 40px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .place-order-left .title{
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 50px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
 }
 
 .place-order-left input{
-    margin-bottom: 15px;
-    width:100%;
-    padding: 10px;
-    border: 1px solid #c5c5c5;
-    border-radius: 4px;
-    outline-color: tomato;
+  margin-bottom: 10px;
+  width:96%;
+  padding: 10px;
+  border: 1px solid #c5c5c5;
+  border-radius: 4px;
+  outline-color: #ff5a5a;
 }
 
 .place-order-left .multi-fields{
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
-.place-order-right{
-    width: 100%;
-    max-width: max(40%,500px);
+.place-order-left .multi-fields input {
+  flex: 1
 }
 
 .cart-total{
-    flex:1;
-    display: flex;
-    flex-direction: column;
-    gap:20px;
-  }
-  .cart-total-details{
-    display: flex;
-    justify-content: space-between;
-    color:#555;
-  }
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+}
+
+.cart-total h1{
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.cart-total-details{
+  display: flex;
+  justify-content: space-between;
+  color:#555;
+}
   
-  .cart-total hr{
-    margin:10px 0px;
+.cart-total hr{
+  margin:10px 0px;
+}
+
+.cart-total button{
+  border:none;
+  color:white;
+  background-color: #ff5a5a;
+  width:100%;
+  padding:12px 0px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.cart-total button:hover {
+  background-color: #ff3333;
+}  
+
+@media (min-width: 768px) {
+  .place-order {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
   }
 
-  .cart-total button{
-    border:none;
-    color:white;
-    background-color: #ff5a5a;
-    width:max(15vw,200px);
-    padding:12px 0px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 30px;
+  .place-order-left {
+    flex: 1;
+    margin-right: auto;
   }
 
+
+  .place-order-right {
+    flex: 1;
+    margin-left: auto;
+  }
+
+  .cart-total button {
+    width: max(15vw, 200px);
+  }
+}
 

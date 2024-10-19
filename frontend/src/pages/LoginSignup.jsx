@@ -1,6 +1,8 @@
 import React,{useState} from "react";
 // import {jwtDecode} from 'jwt-decode';
 // import { useEffect } from "react";
+import {ToastContainer,toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import './CSS/LoginSignup.css'
 
 const LoginSignup = () => {
@@ -24,10 +26,11 @@ const LoginSignup = () => {
         const json = await response.json();
         if(response.ok){
            localStorage.setItem("authorization", json.token);
+           toast.success("You're logged in.");
             window.location.replace("/");
         }
         else{
-            setError(json.error);
+            toast.error(json.error);
         }
     }
 
@@ -42,10 +45,11 @@ const LoginSignup = () => {
         const json = await response.json();
         if(response.ok){
             localStorage.setItem('authorization',json.token);
+            toast.success("Account created.")
             window.location.replace("/");
         }
         else{
-            setError(json.error);
+            toast.error(json.error);
         }
     }
 
@@ -53,7 +57,7 @@ const LoginSignup = () => {
         setFormData({...formData,[e.target.name]:e.target.value});
     }
 
-    return ( 
+    return (
         <div className="loginsignup">
             <div className="loginsignup-container">
                 <h1>{state}</h1>
@@ -69,13 +73,10 @@ const LoginSignup = () => {
                     Already have an account? <span onClick={()=>{setState("Login")}}>Login</span>
                 </p>:
                 <p className="loginsignup-login">
-                    Create an account? <span onClick={()=>{setState("Sign Up")}}>Sign Up</span>
+                    Create an account? <span onClick={()=>{setState("Sign Up")}}>Click Here</span>
                 </p>}
-                <div className="loginsignup-agree">
-                    <input type="checkbox" name='' id=''/>
-                    <p>By continuing, I agree to the terms of use & privacy.</p>
-                </div>
             </div>
+            <ToastContainer/>
         </div>
      );
 }

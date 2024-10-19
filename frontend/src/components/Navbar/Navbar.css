@@ -51,7 +51,7 @@
 .nav-login-cart button{
     padding: 10px 40px;
     outline: none;
-    border: 1px solid #717171;
+    border: 1px solid #ff4141;
     border-radius: 75px;
     color: #515151;
     font-size: 20px;
@@ -60,8 +60,9 @@
     background: #fff;
 }
 
-.nav-login-cart button:active{
-    background: #f3f3f3;
+.nav-login-cart button:hover{
+    background: #f5e0e0;
+    color: #000;
 }
 
 .nav-cart-count{

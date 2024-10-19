@@ -32,7 +32,7 @@
     width: 100%;
     padding-left: 20px;
     border: 1px solid #c9c9c9;
-    outline: none;
+    outline-color: #ff4141;
     color: #5c5c5c;
     font-size: 16px;
 }
@@ -62,26 +62,6 @@
     font-weight: 600;
     cursor: pointer;
 }
-
-.loginsignup-agree{
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-    gap: 20px;
-    color: #5c5c5c;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.error {
-    width: 100%;
-    padding: 10px;
-    background: #fbdcdc;
-    border: 1px solid red;
-    color: red;
-    border-radius: 4px;
-    margin: 20px 0;
-  }
 
 @media(max-width:800px){
     .loginsignup-container{
@@ -122,9 +102,6 @@
         font-size: 14px;
     }
     .loginsignup-login{
-        font-size: 14px;
-    }
-    .loginsignup-agree{
         font-size: 14px;
     }
 }

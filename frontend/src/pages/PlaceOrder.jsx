@@ -2,6 +2,8 @@ import React,{useContext, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import './CSS/PlaceOrder.css';
 import { ShopContext } from "../context/ShopContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const PlaceOrder = () => {
     const {getTotalCartAmount, all_product, cartItems} = useContext(ShopContext);
@@ -52,6 +54,7 @@ const PlaceOrder = () => {
             const {session_url} = json;
             window.location.replace(session_url);
         }
+        else toast.error(json.error);
     }
     const navigate = useNavigate();
 
@@ -63,7 +66,7 @@ const PlaceOrder = () => {
 
     return ( 
         <form onSubmit={placeOrder} className="place-order">
-            <div className="place-order-left">
+            <div className="place-order-left card">
                 <p className="title">Delivery Information</p>
                 <div className="multi-fields">
                     <input name="firstName" onChange={changeHandler} value={data.firstName} type="text" placeholder="First Name" required/>
@@ -81,7 +84,7 @@ const PlaceOrder = () => {
                 </div>
                 <input name="phone" onChange={changeHandler} value={data.phone} type="text" placeholder="phone" required/>
             </div>
-            <div className="place-order-right">
+            <div className="place-order-right card">
             <div className="cart-total">
                     <h1>Cart Totals</h1>
                     <div>
@@ -102,6 +105,7 @@ const PlaceOrder = () => {
                     </div>
                     <button type="submit" >PROCEED TO PAYMENT</button>
                 </div>
+                <ToastContainer />
             </div>
         </form>
      );
