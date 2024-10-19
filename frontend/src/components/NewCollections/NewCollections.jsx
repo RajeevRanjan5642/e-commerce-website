@@ -4,9 +4,10 @@ import Item from '../Item/Item'
 
 const NewCollections = () => {
     const [new_collection,setNew_collection] = useState([]);
+    const backend_url = process.env.REACT_APP_API_URL;
     useEffect(()=>{
         const fetchData = async()=>{
-            const response = await fetch('http://localhost:4000/api/products/newCollections');
+            const response = await fetch(`${backend_url}/api/products/newCollections`);
             const json = await response.json();
             if(response.ok){
                 setNew_collection(json);

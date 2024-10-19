@@ -3,11 +3,12 @@ import './NewsLetter.css'
 
 const NewsLetter = () => {
     const [email, setEmail] = useState('');
+    const backend_url = process.env.REACT_APP_API_URL;
     const changeHandler = (e)=>{
         setEmail(e.target.value);
     };
     const submitHandler = async()=>{
-        const response = await fetch("http://localhost:4000/api/subscribers",{
+        const response = await fetch(`${backend_url}/api/subscribers`,{
             method:"POST",
             headers:{
                 'Content-Type':'application/json',

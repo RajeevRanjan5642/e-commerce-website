@@ -6,9 +6,11 @@ const MyOrders = () => {
 
     const [data,setData] = useState([]);
     const token = localStorage.getItem('authorization');
+
+    const backend_url = process.env.REACT_APP_API_URL;
     
     const fetchOrders = async ()=>{
-        const response = await fetch("http://localhost:4000/api/orders/userorders",{
+        const response = await fetch(`${backend_url}/api/orders/userorders`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',

@@ -13,7 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 exports.placeOrder = async (req, res, next) => {
   const { _id } = req.user;
 
-  const frontend_url = "http://localhost:3000";
+  const frontend_url = process.env.FRONTEND_URL;
 
   const { items, amount, address } = req.body;
   try {

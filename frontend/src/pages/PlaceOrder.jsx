@@ -5,7 +5,8 @@ import { ShopContext } from "../context/ShopContext";
 
 const PlaceOrder = () => {
     const {getTotalCartAmount, all_product, cartItems} = useContext(ShopContext);
-    const token = localStorage.getItem('authorization')
+    const token = localStorage.getItem('authorization');
+    const backend_url = process.env.REACT_APP_API_URL;
     const [data,setData] = useState({
         firstName:"",
         lastName:"",
@@ -37,7 +38,7 @@ const PlaceOrder = () => {
            items:orderItems,
            amount:getTotalCartAmount()+1,
         }
-        let response = await fetch('http://localhost:4000/api/orders/place',{
+        let response = await fetch(`${backend_url}/api/orders/place`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
