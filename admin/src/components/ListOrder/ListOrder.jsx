@@ -6,11 +6,13 @@ import { useEffect } from "react";
 import {ToastContainer,toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+const backend_url = process.env.REACT_APP_API_URL;
+
 const ListOrder = () => {
     const [orders, setOrders] = useState([]);
 
     const fetchOrders = async()=>{
-        const response = await fetch('http://localhost:4000/api/orders');
+        const response = await fetch(`${backend_url}/api/orders`);
         const json = await response.json();
         if(response.ok){
             setOrders(json);
