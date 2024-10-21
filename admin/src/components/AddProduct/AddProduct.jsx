@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddProduct = () => {
     
+    const backend_url = process.env.REACT_APP_API_URL;
     const [image,setImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
         name: "",
@@ -22,8 +23,6 @@ const AddProduct = () => {
         setProductDetails({...productDetails,[e.target.name]:e.target.value})
         // console.log(productDetails);
     }
-
-    const backend_url = process.env.REACT_APP_API_URL;
 
     const addProduct = async () =>{
 
