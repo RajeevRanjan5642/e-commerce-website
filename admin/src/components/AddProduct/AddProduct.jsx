@@ -5,7 +5,7 @@ import {ToastContainer,toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddProduct = () => {
-    
+
     const backend_url = process.env.REACT_APP_API_URL;
     const [image,setImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
@@ -45,7 +45,7 @@ const AddProduct = () => {
                 old_price:""
             });
             setImage(false);
-            alert('product added');
+            toast.success('product added');
         }
         else toast.error("failed");
     }

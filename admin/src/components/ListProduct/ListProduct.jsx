@@ -12,7 +12,7 @@ const ListProduct = () => {
 
     const fetchInfo = async ()=>{
         const response = await fetch(`${backend_url}/api/products`);
-        const json = response.json();
+        const json = await response.json();
         if(response.ok){
             setAllProducts(json);
         }
