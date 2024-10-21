@@ -80,11 +80,11 @@ Open new terminal and run admin panel
 
 The site is live at:
 
-🔗 
+🔗 https://fashionfrenzy-gamma.vercel.app/
 
 Admin Panel :
 
-🔗
+🔗 https://fashionfrenzy-admin.vercel.app/
 
 
 
