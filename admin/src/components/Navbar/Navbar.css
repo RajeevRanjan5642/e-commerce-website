@@ -8,9 +8,9 @@
     background-color: #fff;
 }
 
-.nav-logo{
+/* .nav-logo{
     width: 200px;
-}
+} */
 
 .nav-profile{
     width: 75px;
@@ -20,9 +20,9 @@
     .navbar{
         padding: 15px 30px;
     }
-    .nav-logo{
+    /* .nav-logo{
         width: 150px;
-    }
+    } */
     .nav-profile{
         width: 60px;
     }
