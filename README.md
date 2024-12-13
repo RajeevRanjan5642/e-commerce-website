@@ -1,3 +1,5 @@
+![banner1](https://github.com/user-attachments/assets/23772731-8fee-4638-a429-58d125b1b99c)
+
 ## FashionFrenzy
 
 ## Overview 
