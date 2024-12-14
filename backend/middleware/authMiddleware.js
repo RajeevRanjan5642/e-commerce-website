@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('./../models/userModel');
 const errorHandler = require('./../utils/errorHandler');
 
-const fetchUser = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
   const {authorization} = req.headers;
   if (!authorization) {
     return next(errorHandler(401, "Authentication token is required."));
@@ -19,4 +19,4 @@ const fetchUser = async (req, res, next) => {
   }
 };
 
-module.exports = fetchUser;
+module.exports =authMiddleware;

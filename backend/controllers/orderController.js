@@ -92,21 +92,37 @@ exports.userOrders = async (req, res, next) => {
 
 //listing orders for admin panel
 exports.getAllOrders = async (req, res, next) => {
+  const { _id } = req.user;
   try {
-    const orders = await Order.find({});
-    res.status(200).json(orders);
+    const user = await User.findById(_id);
+    if (user && user.role === "admin") {
+      const orders = await Order.find({});
+      res.status(200).json(orders);
+    } else {
+      return next(errorHandler(400, "You are not an admin."));
+    }
   } catch (err) {
     next(err);
   }
 };
 
 // api for updating the status
-exports.updateStatus = async(req,res,next)=>{
-  const {orderId,status} = req.body;
-  try{
-    const order = await Order.findByIdAndUpdate(orderId,{status},{new:true});
-    res.status(200).json(order);
-  }catch(err){
+exports.updateStatus = async (req, res, next) => {
+  const { orderId, status } = req.body;
+  const { _id } = req.user;
+  try {
+    const user = await User.findById(_id);
+    if (user && user.role === "admin") {
+      const order = await Order.findByIdAndUpdate(
+        orderId,
+        { status },
+        { new: true }
+      );
+      res.status(200).json(order);
+    } else {
+      return next(errorHandler(400, "You are not an admin."));
+    }
+  } catch (err) {
     next(err);
   }
-}
+};

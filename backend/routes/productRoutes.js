@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require('path');
 const productController = require("./../controllers/productController");
+const authMiddleware = require("./../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -19,8 +20,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/", productController.getAllProducts);
-router.post("/", upload.single("product"), productController.createProduct);
-router.delete("/:id", productController.deleteProduct);
+router.post("/", upload.single("product"), authMiddleware,productController.createProduct);
+router.delete("/:id", authMiddleware,productController.deleteProduct);
 router.get("/newCollections", productController.getNewCollections);
 router.get("/popularInWomen", productController.getPopularInWomen);
 
