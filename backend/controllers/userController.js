@@ -71,7 +71,7 @@ exports.loginUser = async (req, res, next) => {
       const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
         expiresIn: "1d",
       });
-      res.status(200).json({ token });
+      res.status(200).json({ token,isAdmin:user.isAdmin });
     }
     else return next(errorHandler(400, "Invalid login credentials"));
   } catch (err) {

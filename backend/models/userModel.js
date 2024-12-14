@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const userModel = mongoose.model("User", userSchema);
