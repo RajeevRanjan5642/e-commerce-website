@@ -6,12 +6,12 @@ import './CSS/LoginSignup.css'
 const LoginSignup = () => {
 
     const [state, setState] = useState("Login");
-    const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         name:"",
         email:"",
         password:"",
     });
+    
     const backend_url = process.env.REACT_APP_API_URL;
     const login = async () =>{
         const response = await fetch(`${backend_url}/api/users/login`,{
@@ -23,9 +23,14 @@ const LoginSignup = () => {
         });
         const json = await response.json();
         if(response.ok){
-           localStorage.setItem("authorization", json.token);
-           toast.success("You're logged in.");
-            window.location.replace("/");
+            if((state==='Admin Login'&& json.isAdmin) || state==='Login'){
+                localStorage.setItem("authorization", json.token);
+                toast.success("You're logged in.");
+                state==='Admin Login'?window.location.href="https://fashionfrenzy-admin.vercel.app/":window.location.replace("/");
+            }
+            else{
+                toast.error("Invalid Credentials");
+            }
         }
         else{
             toast.error(json.error);
@@ -64,14 +69,14 @@ const LoginSignup = () => {
                     <input name="email" value={formData.email} onChange={changeHandler} type="email" placeholder="Email Address" />
                     <input name="password" value={formData.password} onChange={changeHandler} type="password" placeholder="Password"/>
                 </div>
-                {error && <div className="error">{error}</div>}
-                <button onClick={()=>{state==='Login'?login():signup()}}>Continue</button>
+                <button onClick={()=>{state==='Login'||state==='Admin Login'?login():signup()}}>Continue</button>
                 {state==='Sign Up'?
                 <p className="loginsignup-login">
                     Already have an account? <span onClick={()=>{setState("Login")}}>Login</span>
                 </p>:
                 <p className="loginsignup-login">
-                    Create an account? <span onClick={()=>{setState("Sign Up")}}>Click Here</span>
+                    Create an account? <span onClick={()=>{setState("Sign Up")}}>Click Here</span><br></br>
+                    Login as Admin? <span onClick={()=>{setState("Admin Login")}}>Click Here</span>
                 </p>}
             </div>
             <ToastContainer/>
