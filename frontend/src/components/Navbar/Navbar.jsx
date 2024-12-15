@@ -17,7 +17,7 @@ const Navbar = () => {
     }
 
     const clickHandler=()=>{
-        localStorage.removeItem('authorization');
+        localStorage.removeItem('token');
         window.location.replace('/');
     }
 
@@ -31,13 +31,13 @@ const Navbar = () => {
             </div>
             <img className="nav-hamburger" onClick={hamburger_toggle} src={hamburger} alt="" />
             <ul ref={menuRef} className="nav-menu">
-                <li onClick={()=>setMenu("shop")}><Link style={{textDecoration: 'none'}} to="/">Shop</Link>{menu==="shop"?<hr/>:<></>}</li>
-                <li onClick={()=>setMenu("men")}><Link style={{textDecoration: 'none'}} to="/men">Men</Link>{menu==="men"?<hr/>:<></>}</li>
-                <li onClick={()=>setMenu("women")}><Link style={{textDecoration: 'none'}} to="/women">Women</Link>{menu==="women"?<hr/>:<></>}</li>
-                <li onClick={()=>setMenu("kids")}><Link style={{textDecoration: 'none'}} to="/kids">Kids</Link>{menu==="kids"?<hr/>:<></>}</li>
+                <li onClick={()=>setMenu("shop")}><Link style={{textDecoration: 'none'}} to="/" className={menu==="shop"?"active":""}>Shop</Link></li>
+                <li onClick={()=>setMenu("men")}><Link style={{textDecoration: 'none'}} to="/men" className={menu==="men"?"active":""}>Men</Link></li>
+                <li onClick={()=>setMenu("women")}><Link style={{textDecoration: 'none'}} to="/women" className={menu==="women"?"active":""}>Women</Link></li>
+                <li onClick={()=>setMenu("kids")}><Link style={{textDecoration: 'none'}} to="/kids"className={menu==="kids"?"active":""}>Kids</Link></li>
             </ul>
             <div className="nav-login-cart">
-                {!localStorage.getItem('authorization')?<Link to="/login"><button>Login</button></Link>:
+                {!localStorage.getItem('token')?<Link to="/login"><button>Login</button></Link>:
                 <div className='navbar-profile'>
                     <img src={profile_icon} alt="" />
                     <ul className="nav-profile-dropdown">

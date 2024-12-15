@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const PlaceOrder = () => {
     const {getTotalCartAmount, all_product, cartItems} = useContext(ShopContext);
-    const token = localStorage.getItem('authorization');
+    const token = localStorage.getItem('token');
     const backend_url = process.env.REACT_APP_API_URL;
     const [data,setData] = useState({
         firstName:"",

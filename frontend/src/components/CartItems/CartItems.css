@@ -71,7 +71,7 @@
 .cartitems-total button{
     border:none;
     color:white;
-    background-color: #ff5a5a;
+    background-color: tomato;
     width: max(15vw, 200px);
     padding:12px 0px;
     border-radius: 4px;

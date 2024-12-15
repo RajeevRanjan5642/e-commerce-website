@@ -34,7 +34,7 @@
   padding: 10px;
   border: 1px solid #c5c5c5;
   border-radius: 4px;
-  outline-color: #ff5a5a;
+  outline-color: tomato;
 }
 
 .place-order-left .multi-fields{
@@ -71,17 +71,13 @@
 .cart-total button{
   border:none;
   color:white;
-  background-color: #ff5a5a;
+  background-color: tomato;
   width:100%;
   padding:12px 0px;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
 }
-
-.cart-total button:hover {
-  background-color: #ff3333;
-}  
 
 @media (min-width: 768px) {
   .place-order {
