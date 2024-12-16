@@ -1,4 +1,4 @@
-![banner1](https://github.com/user-attachments/assets/23772731-8fee-4638-a429-58d125b1b99c)
+![banner2](https://github.com/user-attachments/assets/3171887b-10f3-4b84-8919-bd34677aa0e7)
 
 ## FashionFrenzy
 
