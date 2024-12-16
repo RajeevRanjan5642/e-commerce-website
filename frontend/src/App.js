@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Shop from "./pages/Shop";
+import Home from "./pages/Home";
 import ShopCategory from "./pages/ShopCategory";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
@@ -13,6 +13,7 @@ import PlaceOrder from "./pages/PlaceOrder";
 import Verify from "./pages/Verify";
 import MyOrders from "./pages/MyOrders";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <ToastContainer/>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Shop />} />
+          <Route path="/" element={<Home />} />
           <Route
             path="/men"
             element={<ShopCategory banner={men_banner} category="men" />}

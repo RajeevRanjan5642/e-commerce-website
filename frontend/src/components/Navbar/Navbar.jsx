@@ -31,7 +31,7 @@ const Navbar = () => {
             </div>
             <img className="nav-hamburger" onClick={hamburger_toggle} src={hamburger} alt="" />
             <ul ref={menuRef} className="nav-menu">
-                <li onClick={()=>setMenu("shop")}><Link style={{textDecoration: 'none'}} to="/" className={menu==="shop"?"active":""}>Shop</Link></li>
+                <li onClick={()=>setMenu("home")}><Link style={{textDecoration: 'none'}} to="/" className={menu==="home"?"active":""}>Home</Link></li>
                 <li onClick={()=>setMenu("men")}><Link style={{textDecoration: 'none'}} to="/men" className={menu==="men"?"active":""}>Men</Link></li>
                 <li onClick={()=>setMenu("women")}><Link style={{textDecoration: 'none'}} to="/women" className={menu==="women"?"active":""}>Women</Link></li>
                 <li onClick={()=>setMenu("kids")}><Link style={{textDecoration: 'none'}} to="/kids"className={menu==="kids"?"active":""}>Kids</Link></li>
