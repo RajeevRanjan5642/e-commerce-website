@@ -2,6 +2,7 @@ const Product = require("./../models/productModel");
 const errorHandler = require("./../utils/errorHandler");
 const fs = require("fs");
 require("dotenv").config({ path: "./config.env" });
+const User = require("./../models/userModel");
 
 const backend_url = process.env.BACKEND_URL;
 
@@ -21,21 +22,16 @@ exports.createProduct = async (req, res, next) => {
   let id = 1;
   if (length > 0) id = products[length - 1].id + 1;
   const { name, category, new_price, old_price } = req.body;
-  const { _id } = req.user;
   try {
-    if (user && user.rol === "admin") {
-      const product = await Product.create({
-        id,
-        name,
-        image: image_filename,
-        category,
-        new_price,
-        old_price,
-      });
-      res.status(200).json(product);
-    } else {
-      return next(errorHandler(400, "You are not an admin."));
-    }
+    const product = await Product.create({
+      id,
+      name,
+      image: image_filename,
+      category,
+      new_price,
+      old_price,
+    });
+    res.status(200).json(product);
   } catch (err) {
     next(err);
   }
@@ -43,17 +39,12 @@ exports.createProduct = async (req, res, next) => {
 
 exports.deleteProduct = async (req, res, next) => {
   const { id } = req.params;
-  const { _id } = req.user;
   try {
-    if (user && user.rol === "admin") {
-      const product = await Product.findOne({ id });
-      //delete the image from folder
-      fs.unlink(`upload/images/${product.image}`, () => {});
-      await Product.findOneAndDelete({ id });
-      res.status(200).json(product);
-    } else {
-      return next(errorHandler(400, "You are not an admin."));
-    }
+    const product = await Product.findOne({ id });
+    //delete the image from folder
+    fs.unlink(`upload/images/${product.image}`, () => {});
+    await Product.findOneAndDelete({ id });
+    res.status(200).json(product);
   } catch (err) {
     next(err);
   }

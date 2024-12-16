@@ -3,10 +3,9 @@ import './ListProduct.css';
 import cross_icon from './../../assets/cross_icon.png';
 import {toast} from "react-toastify";
 
-const backend_url = process.env.REACT_APP_API_URL;
-
 const ListProduct = () => {
-
+    const backend_url = process.env.REACT_APP_API_URL;
+    const token = localStorage.getItem("token");
     const [allproducts, setAllProducts] = useState([]);
 
     const fetchInfo = async ()=>{
@@ -26,10 +25,11 @@ const ListProduct = () => {
         const response = await fetch(`${backend_url}/api/products/${id}`,{
             method:'DELETE',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${token}`
             }
         });
-        const json = response.json();
+        const json = await response.json();
         if(!response.ok) toast.error(json.error);
         await fetchInfo();
     }
@@ -48,7 +48,7 @@ const ListProduct = () => {
             <div className="listproduct-allproducts">
                 <hr />
                 {allproducts.map((product,index)=>{
-                    return <><div className="listproduct-format-main listproduct-format">
+                    return <><div className="listproduct-format-main listproduct-format" key={index}>
                         <img src={product.image} alt="" className="listproduct-product-icon" />
                         <p>{product.name}</p>
                         <p>${product.old_price}</p>

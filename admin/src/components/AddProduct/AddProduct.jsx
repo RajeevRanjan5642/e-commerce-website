@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 const AddProduct = () => {
 
     const backend_url = process.env.REACT_APP_API_URL;
+    const token = localStorage.getItem("token");
     const [image,setImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
         name: "",
@@ -34,6 +35,9 @@ const AddProduct = () => {
     
         const response = await fetch(`${backend_url}/api/products`,{
             method:'POST',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            },
             body:formData,
         });
         if(response.ok){

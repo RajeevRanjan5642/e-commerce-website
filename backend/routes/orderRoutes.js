@@ -8,7 +8,7 @@ const router = express.Router();
 router.post("/place", authMiddleware, orderController.placeOrder);
 router.post("/verify", orderController.verifyOrder);
 router.post("/userorders", authMiddleware, orderController.userOrders);
-router.get("/", authMiddleware,orderController.getAllOrders);
+router.get("/", orderController.getAllOrders);
 router.post("/status", authMiddleware,orderController.updateStatus);
 
 module.exports = router;

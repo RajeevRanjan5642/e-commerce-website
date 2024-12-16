@@ -12,7 +12,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // placing order
 exports.placeOrder = async (req, res, next) => {
   const { _id } = req.user;
-
   const frontend_url = process.env.FRONTEND_URL;
 
   const { items, amount, address } = req.body;
@@ -92,15 +91,9 @@ exports.userOrders = async (req, res, next) => {
 
 //listing orders for admin panel
 exports.getAllOrders = async (req, res, next) => {
-  const { _id } = req.user;
   try {
-    const user = await User.findById(_id);
-    if (user && user.role === "admin") {
-      const orders = await Order.find({});
-      res.status(200).json(orders);
-    } else {
-      return next(errorHandler(400, "You are not an admin."));
-    }
+    const orders = await Order.find({});
+    res.status(200).json(orders);
   } catch (err) {
     next(err);
   }
@@ -109,19 +102,13 @@ exports.getAllOrders = async (req, res, next) => {
 // api for updating the status
 exports.updateStatus = async (req, res, next) => {
   const { orderId, status } = req.body;
-  const { _id } = req.user;
   try {
-    const user = await User.findById(_id);
-    if (user && user.role === "admin") {
-      const order = await Order.findByIdAndUpdate(
-        orderId,
-        { status },
-        { new: true }
-      );
-      res.status(200).json(order);
-    } else {
-      return next(errorHandler(400, "You are not an admin."));
-    }
+    const order = await Order.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
+    res.status(200).json(order);
   } catch (err) {
     next(err);
   }
