@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import './AddProduct.css';
 import upload_area from './../../assets/upload_area.svg';
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 
 const AddProduct = () => {
 
@@ -81,7 +80,6 @@ const AddProduct = () => {
                 </div>
                 <button onClick={addProduct} className="addproduct-btn">ADD</button>
             </div>
-            <ToastContainer/>
         </div>
      );
 }

@@ -3,8 +3,7 @@ import './ListOrder.css'
 import { useState } from "react";
 import parcel_icon from './../../assets/parcel_icon.png'
 import { useEffect } from "react";
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 
 const backend_url = process.env.REACT_APP_API_URL;
 
@@ -78,7 +77,6 @@ const ListOrder = () => {
                 </div>
                 ))}
             </div>
-            <ToastContainer/>
         </div>
     );
 }

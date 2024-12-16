@@ -33,10 +33,10 @@ const Login = ()=>{
                 localStorage.setItem("token", json.token);
                 localStorage.setItem("admin", true);
                 toast.success("You're logged in.");
-                navigate("/addproduct");
+                window.location.replace("/addproduct");
             }
             else{
-                toast.error("You are not an admin.");
+                toast.error("Invalid Credentials");
             }
         }
         else{

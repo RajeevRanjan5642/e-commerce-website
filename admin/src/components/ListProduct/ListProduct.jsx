@@ -1,8 +1,7 @@
 import React,{useState,useEffect} from "react";
 import './ListProduct.css';
 import cross_icon from './../../assets/cross_icon.png';
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 
 const backend_url = process.env.REACT_APP_API_URL;
 
@@ -61,7 +60,6 @@ const ListProduct = () => {
                     </>
                 })}
             </div>
-            <ToastContainer/>
         </div>
      );
 }
