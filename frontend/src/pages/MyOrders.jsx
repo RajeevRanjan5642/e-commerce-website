@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import './CSS/MyOrders.css'
-import parcel_icon from  './../components/assets/parcel_icon.png';
+import parcel_icon from  './../assets/parcel_icon.png';
 
 const MyOrders = () => {
 
     const [data,setData] = useState([]);
-    const token = localStorage.getItem('authorization');
+    const token = localStorage.getItem('token');
 
     const backend_url = process.env.REACT_APP_API_URL;
     

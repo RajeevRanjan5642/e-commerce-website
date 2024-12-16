@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+.navbar .active{
+    padding-bottom: 2px;
+    border-bottom: 2px solid tomato;
+}
+
 .nav-logo{
     display: flex;
     align-items: center;
@@ -39,7 +44,7 @@
     width: 80%;
     height: 3px;
     border-radius: 10px;
-    background-color: #ff4141;
+    background-color: tomato;
 }
 
 .nav-login-cart{
@@ -51,7 +56,7 @@
 .nav-login-cart button{
     padding: 10px 40px;
     outline: none;
-    border: 1px solid #ff4141;
+    border: 1px solid tomato;
     border-radius: 75px;
     color: #515151;
     font-size: 20px;
@@ -75,7 +80,7 @@
     margin-left: -55px;
     border-radius: 50%;
     font-size: 14px;
-    background-color: #ff4141;
+    background-color: tomato;
     color: #fff;
 }
 
@@ -99,7 +104,7 @@
     cursor: pointer;
 }
 .nav-profile-dropdown li:hover{
-    color: #ff4141;
+    color: tomato;
 }
 .navbar-profile:hover .nav-profile-dropdown{
     display: flex;
@@ -108,7 +113,7 @@
     background-color: #fff;
     padding: 12px 25px;
     border-radius: 4px;
-    border: 1px solid #ff4141;
+    border: 1px solid tomato;
     list-style: none;
     outline: none;
     cursor: pointer;

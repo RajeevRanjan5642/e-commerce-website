@@ -1,5 +1,4 @@
 const Product = require("./../models/productModel");
-const errorHandler = require("./../utils/errorHandler");
 const fs = require("fs");
 require("dotenv").config({ path: "./config.env" });
 

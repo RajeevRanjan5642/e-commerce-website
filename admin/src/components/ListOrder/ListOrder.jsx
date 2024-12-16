@@ -3,13 +3,13 @@ import './ListOrder.css'
 import { useState } from "react";
 import parcel_icon from './../../assets/parcel_icon.png'
 import { useEffect } from "react";
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 
-const backend_url = process.env.REACT_APP_API_URL;
 
 const ListOrder = () => {
+    const backend_url = process.env.REACT_APP_API_URL;
     const [orders, setOrders] = useState([]);
+    const token = localStorage.getItem("token")
 
     const fetchOrders = async()=>{
         const response = await fetch(`${backend_url}/api/orders`);
@@ -23,13 +23,12 @@ const ListOrder = () => {
         fetchOrders();
     },[])
 
-    const backend_url = process.env.REACT_APP_API_URL;
-
     const statusHandler = async (event,orderId) => {
         const response = await fetch(`${backend_url}/api/orders/status`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`,
             },
             body:JSON.stringify({orderId,
                 status:event.target.value}),
@@ -78,7 +77,6 @@ const ListOrder = () => {
                 </div>
                 ))}
             </div>
-            <ToastContainer/>
         </div>
     );
 }

@@ -7,12 +7,10 @@ require("dotenv").config({ path: "./config.env" });
 
 //configure stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-// console.log(stripe);
 
 // placing order
 exports.placeOrder = async (req, res, next) => {
   const { _id } = req.user;
-
   const frontend_url = process.env.FRONTEND_URL;
 
   const { items, amount, address } = req.body;
@@ -101,12 +99,16 @@ exports.getAllOrders = async (req, res, next) => {
 };
 
 // api for updating the status
-exports.updateStatus = async(req,res,next)=>{
-  const {orderId,status} = req.body;
-  try{
-    const order = await Order.findByIdAndUpdate(orderId,{status},{new:true});
+exports.updateStatus = async (req, res, next) => {
+  const { orderId, status } = req.body;
+  try {
+    const order = await Order.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
     res.status(200).json(order);
-  }catch(err){
+  } catch (err) {
     next(err);
   }
-}
+};

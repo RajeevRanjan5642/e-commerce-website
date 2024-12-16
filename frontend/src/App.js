@@ -1,24 +1,27 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Shop from "./pages/Shop";
+import Home from "./pages/Home";
 import ShopCategory from "./pages/ShopCategory";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import LoginSignup from "./pages/LoginSignup";
-import men_banner from "./components/assets/banner_mens.png";
-import women_banner from "./components/assets/banner_women.png";
-import kid_banner from "./components/assets/banner_kids.png";
+import men_banner from "./../src/assets/banner_mens.png";
+import women_banner from "./../src/assets/banner_women.png";
+import kid_banner from "./../src/assets/banner_kids.png";
 import Footer from "./components/Footer/Footer";
 import PlaceOrder from "./pages/PlaceOrder";
 import Verify from "./pages/Verify";
 import MyOrders from "./pages/MyOrders";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div>
+      <ToastContainer/>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Shop />} />
+          <Route path="/" element={<Home />} />
           <Route
             path="/men"
             element={<ShopCategory banner={men_banner} category="men" />}

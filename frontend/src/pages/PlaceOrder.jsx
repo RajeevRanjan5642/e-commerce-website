@@ -1,13 +1,12 @@
 import React,{useContext, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import './CSS/PlaceOrder.css';
-import { ShopContext } from "../context/ShopContext";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { StoreContext } from "../context/StoreContext";
+import { toast } from 'react-toastify';
 
 const PlaceOrder = () => {
-    const {getTotalCartAmount, all_product, cartItems} = useContext(ShopContext);
-    const token = localStorage.getItem('authorization');
+    const {getTotalCartAmount, all_product, cartItems} = useContext(StoreContext);
+    const token = localStorage.getItem('token');
     const backend_url = process.env.REACT_APP_API_URL;
     const [data,setData] = useState({
         firstName:"",
@@ -105,7 +104,6 @@ const PlaceOrder = () => {
                     </div>
                     <button type="submit" >PROCEED TO PAYMENT</button>
                 </div>
-                <ToastContainer />
             </div>
         </form>
      );

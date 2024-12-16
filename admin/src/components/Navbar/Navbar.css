@@ -12,9 +12,18 @@
     width: 200px;
 }
 
-/* .nav-profile{
-    width: 75px;
-} */
+.login-condition{
+    font-size: 15px;
+    border: 1px solid tomato;
+    padding: 5px 25px;
+    color: rgb(61, 57, 57);
+    border-radius: 16px;
+    cursor:pointer;
+}
+
+.login-condition:hover{
+    background-color: rgb(243, 229, 226);
+}
 
 @media(max-width:800px){
     .navbar{
@@ -23,7 +32,4 @@
     .nav-logo{
         width: 150px;
     }
-    /* .nav-profile{
-        width: 60px;
-    } */
 }

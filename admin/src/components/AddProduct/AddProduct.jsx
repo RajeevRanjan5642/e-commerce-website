@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import './AddProduct.css';
 import upload_area from './../../assets/upload_area.svg';
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 
 const AddProduct = () => {
 
     const backend_url = process.env.REACT_APP_API_URL;
+    const token = localStorage.getItem("token");
     const [image,setImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
         name: "",
@@ -35,6 +35,9 @@ const AddProduct = () => {
     
         const response = await fetch(`${backend_url}/api/products`,{
             method:'POST',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            },
             body:formData,
         });
         if(response.ok){
@@ -81,7 +84,6 @@ const AddProduct = () => {
                 </div>
                 <button onClick={addProduct} className="addproduct-btn">ADD</button>
             </div>
-            <ToastContainer/>
         </div>
      );
 }

@@ -1,6 +1,5 @@
 import React,{useState} from "react";
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 import './CSS/LoginSignup.css'
 
 const LoginSignup = () => {
@@ -23,14 +22,9 @@ const LoginSignup = () => {
         });
         const json = await response.json();
         if(response.ok){
-            if((state==='Admin Login'&& json.isAdmin) || state==='Login'){
-                localStorage.setItem("authorization", json.token);
+                localStorage.setItem("token", json.token);
                 toast.success("You're logged in.");
-                state==='Admin Login'?window.location.href="https://fashionfrenzy-admin.vercel.app/":window.location.replace("/");
-            }
-            else{
-                toast.error("Invalid Credentials");
-            }
+                window.location.replace("/");
         }
         else{
             toast.error(json.error);
@@ -47,7 +41,7 @@ const LoginSignup = () => {
         });
         const json = await response.json();
         if(response.ok){
-            localStorage.setItem('authorization',json.token);
+            localStorage.setItem('token',json.token);
             toast.success("Account created.")
             window.location.replace("/");
         }
@@ -69,17 +63,15 @@ const LoginSignup = () => {
                     <input name="email" value={formData.email} onChange={changeHandler} type="email" placeholder="Email Address" />
                     <input name="password" value={formData.password} onChange={changeHandler} type="password" placeholder="Password"/>
                 </div>
-                <button onClick={()=>{state==='Login'||state==='Admin Login'?login():signup()}}>Continue</button>
+                <button onClick={()=>{state==='Login'?login():signup()}}>{state}</button>
                 {state==='Sign Up'?
                 <p className="loginsignup-login">
                     Already have an account? <span onClick={()=>{setState("Login")}}>Login</span>
                 </p>:
                 <p className="loginsignup-login">
                     Create an account? <span onClick={()=>{setState("Sign Up")}}>Click Here</span><br></br>
-                    Login as Admin? <span onClick={()=>{setState("Admin Login")}}>Click Here</span>
                 </p>}
             </div>
-            <ToastContainer/>
         </div>
      );
 }

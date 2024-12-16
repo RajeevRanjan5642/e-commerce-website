@@ -1,13 +1,11 @@
 import React,{useState,useEffect} from "react";
 import './ListProduct.css';
-import cross_icon from './../../assets/cross_icon.png';
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
-const backend_url = process.env.REACT_APP_API_URL;
+import bin from './../../assets/recycle-bin.png';
+import {toast} from "react-toastify";
 
 const ListProduct = () => {
-
+    const backend_url = process.env.REACT_APP_API_URL;
+    const token = localStorage.getItem("token");
     const [allproducts, setAllProducts] = useState([]);
 
     const fetchInfo = async ()=>{
@@ -27,10 +25,11 @@ const ListProduct = () => {
         const response = await fetch(`${backend_url}/api/products/${id}`,{
             method:'DELETE',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${token}`
             }
         });
-        const json = response.json();
+        const json = await response.json();
         if(!response.ok) toast.error(json.error);
         await fetchInfo();
     }
@@ -49,19 +48,18 @@ const ListProduct = () => {
             <div className="listproduct-allproducts">
                 <hr />
                 {allproducts.map((product,index)=>{
-                    return <><div className="listproduct-format-main listproduct-format">
+                    return <><div className="listproduct-format-main listproduct-format" key={index}>
                         <img src={product.image} alt="" className="listproduct-product-icon" />
                         <p>{product.name}</p>
                         <p>${product.old_price}</p>
                         <p>${product.new_price}</p>
                         <p>{product.category}</p>
-                        <img onClick={()=>{removeProduct(product.id)}} src={cross_icon} alt="" className="listproduct-remove-icon"/>
+                        <img onClick={()=>{removeProduct(product.id)}} src={bin} alt="" className="listproduct-remove-icon"/>
                     </div>
                     <hr />
                     </>
                 })}
             </div>
-            <ToastContainer/>
         </div>
      );
 }

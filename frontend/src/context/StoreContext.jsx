@@ -1,15 +1,14 @@
 import React, {createContext, useEffect, useState} from 'react';
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 
-export const ShopContext = createContext(null);
+export const StoreContext = createContext(null);
 
-const ShopContextProvider = (props) => {
+const StoreContextProvider = (props) => {
 
     const [all_product, setAll_product] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const backend_url = process.env.REACT_APP_API_URL;
-    const token = localStorage.getItem('authorization');
+    const token = localStorage.getItem('token');
 
     useEffect(()=>{
         const fetchData = async()=>{
@@ -20,7 +19,7 @@ const ShopContextProvider = (props) => {
             }
             else alert(json.error);
             // else throw new Error(json.error)
-            if(localStorage.getItem('authorization')){
+            if(localStorage.getItem('token')){
                 const response = await fetch(`${backend_url}/api/cart/getCart`,{
                     method:'POST',
                     headers:{
@@ -44,7 +43,7 @@ const ShopContextProvider = (props) => {
         else {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
         }
-        if(localStorage.getItem('authorization')){
+        if(localStorage.getItem('token')){
             const response = await fetch(`${backend_url}/api/cart/addToCart`,{
                 method:'POST',
                 headers:{
@@ -62,7 +61,7 @@ const ShopContextProvider = (props) => {
 
     const removeFromCart = async (itemId) =>{
         setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}));
-        if(localStorage.getItem('authorization')){
+        if(localStorage.getItem('token')){
             const response = await fetch(`${backend_url}/api/cart/removeFromCart`,{
                 method:'POST',
                 headers:{
@@ -100,11 +99,10 @@ const ShopContextProvider = (props) => {
     const contextValue = {all_product,cartItems,addToCart,removeFromCart,getTotalCartAmount,getTotalCartItems};
 
     return (
-        <ShopContext.Provider value={contextValue}>
-            <ToastContainer/>
+        <StoreContext.Provider value={contextValue}>
             {props.children}
-        </ShopContext.Provider>
+        </StoreContext.Provider>
     )
 }
 
-export default ShopContextProvider;
+export default StoreContextProvider;
