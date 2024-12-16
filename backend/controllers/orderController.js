@@ -7,7 +7,6 @@ require("dotenv").config({ path: "./config.env" });
 
 //configure stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-// console.log(stripe);
 
 // placing order
 exports.placeOrder = async (req, res, next) => {

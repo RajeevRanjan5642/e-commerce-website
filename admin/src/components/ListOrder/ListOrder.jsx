@@ -9,6 +9,7 @@ import {toast} from "react-toastify";
 const ListOrder = () => {
     const backend_url = process.env.REACT_APP_API_URL;
     const [orders, setOrders] = useState([]);
+    const token = localStorage.getItem("token")
 
     const fetchOrders = async()=>{
         const response = await fetch(`${backend_url}/api/orders`);
@@ -27,6 +28,7 @@ const ListOrder = () => {
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`,
             },
             body:JSON.stringify({orderId,
                 status:event.target.value}),
