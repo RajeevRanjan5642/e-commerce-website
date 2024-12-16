@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import './CartItems.css'
 import { StoreContext } from "../../context/StoreContext";
-import remove_icon from '../assets/cart_cross_icon.png'
+import bin from './../../assets/recycle-bin.png'
 
 const CartItems = () => {
     const {all_product,cartItems,removeFromCart,getTotalCartAmount} = useContext(StoreContext);
@@ -29,7 +29,7 @@ const CartItems = () => {
                                 <p>${e.new_price}</p>
                                 <button className="cartitems-quantity">{cartItems[e.id]}</button>
                                 <p>${e.new_price*cartItems[e.id]}</p>
-                                <img className="cartitems-remove-icon" src={remove_icon} onClick={()=>{removeFromCart(e.id)}} alt="" />
+                                <img className="cartitems-remove-icon" src={bin} onClick={()=>{removeFromCart(e.id)}} alt="" />
                             </div>
                             <hr />
                         </div>

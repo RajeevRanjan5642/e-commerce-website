@@ -1,11 +1,11 @@
 import React,{useContext, useRef, useState} from 'react';
 import './Navbar.css'
-import logo from '../assets/logo.png'
-import cart_icon from '../assets/cart_icon.png'
+import logo from '../../assets/logo.png'
+import cart_icon from '../../assets/cart_icon.png'
 import {Link, useNavigate} from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
-import hamburger from './../assets/hamburger.png'
-import profile_icon from './../assets/profile_icon.png'
+import hamburger from './../../assets/hamburger.png'
+import profile_icon from './../../assets/profile_icon.png'
 
 const Navbar = () => {
     const [menu, setMenu] = useState("shop");

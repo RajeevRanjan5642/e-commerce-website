@@ -3,12 +3,20 @@
     grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
     align-items: start;
     gap: 30px;
-    border: 1px solid tomato;
+    border: 1px solid #ddd;
     padding: 20px;
-    margin: 30px 0px;
+    margin: 30px 30px;
     font-size: 14px;
     color: #505050;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.order h3{
+    margin-left: 30px;
+}
+
 .order-item-food, .order-item-name{
     font-weight: 600;
 }
@@ -21,7 +29,8 @@
 }
 .order-item select{
     background-color: #ffe8e4;
-    border: 1px solid tomato;
+    border: 1px solid #454545;
+    color: #454545;
     width: max(10vw,120px);
     padding: 10px;
     outline: none;

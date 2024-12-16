@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import './ListProduct.css';
-import cross_icon from './../../assets/cross_icon.png';
+import bin from './../../assets/recycle-bin.png';
 import {toast} from "react-toastify";
 
 const ListProduct = () => {
@@ -54,7 +54,7 @@ const ListProduct = () => {
                         <p>${product.old_price}</p>
                         <p>${product.new_price}</p>
                         <p>{product.category}</p>
-                        <img onClick={()=>{removeProduct(product.id)}} src={cross_icon} alt="" className="listproduct-remove-icon"/>
+                        <img onClick={()=>{removeProduct(product.id)}} src={bin} alt="" className="listproduct-remove-icon"/>
                     </div>
                     <hr />
                     </>
