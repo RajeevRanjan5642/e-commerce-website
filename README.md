@@ -3,7 +3,7 @@
 ## FashionFrenzy
 
 ## Overview 
-FitnessFrenzy is a comprehensive full stack web application developed using the MERN stack (MongoDB, Express.js, React, and Node.js) designed for online shopping of clothes to provide a seamless and intuitive user experience.
+FashionFrenzy is a comprehensive full-stack web application developed using MERN stack. It designed to provide a seamless and intuitive online shopping experience for clothes.
 
 ## Features ⚙️
 - <b>User Authentication:</b> Secure user registration and login using JWT authentication.
@@ -12,7 +12,7 @@ FitnessFrenzy is a comprehensive full stack web application developed using the 
 - <b>Responsive Design:</b> The application is designed to be fully responsive, ensuring a seamless experience across all devices. 
 
 ## Tech Stack 🛠️
-- MongoDB
+- MongoDB Atlas
 - ExpressJS
 - React
 - NodeJS
