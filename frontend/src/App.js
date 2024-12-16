@@ -12,10 +12,12 @@ import Footer from "./components/Footer/Footer";
 import PlaceOrder from "./pages/PlaceOrder";
 import Verify from "./pages/Verify";
 import MyOrders from "./pages/MyOrders";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <div>
+      <ToastContainer/>
         <Navbar />
         <Routes>
           <Route path="/" element={<Shop />} />

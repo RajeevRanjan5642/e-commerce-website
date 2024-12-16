@@ -1,6 +1,5 @@
 import React,{useState} from "react";
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 import './CSS/LoginSignup.css'
 
 const LoginSignup = () => {
@@ -73,7 +72,6 @@ const LoginSignup = () => {
                     Create an account? <span onClick={()=>{setState("Sign Up")}}>Click Here</span><br></br>
                 </p>}
             </div>
-            <ToastContainer/>
         </div>
      );
 }

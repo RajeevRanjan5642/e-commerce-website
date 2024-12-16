@@ -16,7 +16,7 @@ const Navbar = () => {
         menuRef.current.classList.toggle('nav-menu-visible');
     }
 
-    const clickHandler=()=>{
+    const logout=()=>{
         localStorage.removeItem('token');
         window.location.replace('/');
     }
@@ -43,7 +43,7 @@ const Navbar = () => {
                     <ul className="nav-profile-dropdown">
                        <li onClick={()=>navigate("/myorders")}>Orders</li>
                        <hr />
-                       <li onClick={clickHandler}>Logout</li>
+                       <li onClick={logout}>Logout</li>
                     </ul>
                 </div>}
                 <Link to="/cart"><img src={cart_icon} alt="" /></Link>

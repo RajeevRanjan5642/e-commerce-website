@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './NewsLetter.css'
+import {toast} from 'react-toastify'
 
 const NewsLetter = () => {
     const [email, setEmail] = useState('');
@@ -17,11 +18,11 @@ const NewsLetter = () => {
         })
         const json = await response.json();
         if(response.ok){
-            alert('Subscribed successfully');
+            toast.success('Subscribed successfully');
             setEmail('');
         }
         else {
-            alert(json.error);
+            toast.error(json.error);
             setEmail('');
         }
     }

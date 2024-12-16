@@ -1,6 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react';
-import {ToastContainer,toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 
 export const ShopContext = createContext(null);
 
@@ -101,7 +100,6 @@ const ShopContextProvider = (props) => {
 
     return (
         <ShopContext.Provider value={contextValue}>
-            <ToastContainer/>
             {props.children}
         </ShopContext.Provider>
     )
