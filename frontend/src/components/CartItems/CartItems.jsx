@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import './CartItems.css'
-import { ShopContext } from "../../context/ShopContext";
+import { StoreContext } from "../../context/StoreContext";
 import remove_icon from '../assets/cart_cross_icon.png'
 
 const CartItems = () => {
-    const {all_product,cartItems,removeFromCart,getTotalCartAmount} = useContext(ShopContext);
+    const {all_product,cartItems,removeFromCart,getTotalCartAmount} = useContext(StoreContext);
     const navigate = useNavigate();
     return ( 
         <div className="cartitems">

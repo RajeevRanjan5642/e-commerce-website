@@ -1,9 +1,9 @@
 import React, {createContext, useEffect, useState} from 'react';
 import {toast} from "react-toastify";
 
-export const ShopContext = createContext(null);
+export const StoreContext = createContext(null);
 
-const ShopContextProvider = (props) => {
+const StoreContextProvider = (props) => {
 
     const [all_product, setAll_product] = useState([]);
     const [cartItems, setCartItems] = useState({});
@@ -99,10 +99,10 @@ const ShopContextProvider = (props) => {
     const contextValue = {all_product,cartItems,addToCart,removeFromCart,getTotalCartAmount,getTotalCartItems};
 
     return (
-        <ShopContext.Provider value={contextValue}>
+        <StoreContext.Provider value={contextValue}>
             {props.children}
-        </ShopContext.Provider>
+        </StoreContext.Provider>
     )
 }
 
-export default ShopContextProvider;
+export default StoreContextProvider;

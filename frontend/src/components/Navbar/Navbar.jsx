@@ -3,13 +3,13 @@ import './Navbar.css'
 import logo from '../assets/logo.png'
 import cart_icon from '../assets/cart_icon.png'
 import {Link, useNavigate} from 'react-router-dom';
-import { ShopContext } from '../../context/ShopContext';
+import { StoreContext } from '../../context/StoreContext';
 import hamburger from './../assets/hamburger.png'
 import profile_icon from './../assets/profile_icon.png'
 
 const Navbar = () => {
     const [menu, setMenu] = useState("shop");
-    const {getTotalCartItems} = useContext(ShopContext);
+    const {getTotalCartItems} = useContext(StoreContext);
     const menuRef = useRef();
 
     const hamburger_toggle = (e) =>{
