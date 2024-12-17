@@ -22,9 +22,9 @@ const LoginSignup = () => {
         });
         const json = await response.json();
         if(response.ok){
-                localStorage.setItem("token", json.token);
-                toast.success("You're logged in.");
-                window.location.replace("/");
+            localStorage.setItem("token", json.token);
+            toast.success("You're logged in.");
+            window.location.replace("/");
         }
         else{
             toast.error(json.error);

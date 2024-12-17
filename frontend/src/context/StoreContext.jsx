@@ -17,14 +17,14 @@ const StoreContextProvider = (props) => {
             if(response.ok){
                 setAll_product(json);
             }
-            else alert(json.error);
-            // else throw new Error(json.error)
+            else toast.error(json.error);
+            
             if(localStorage.getItem('token')){
                 const response = await fetch(`${backend_url}/api/cart/getCart`,{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
-                        'authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${token}`,
                     },
                     body:"",
                 });
@@ -48,7 +48,7 @@ const StoreContextProvider = (props) => {
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
-                    'authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${token}`,
                 },
                 body:JSON.stringify({'itemId':itemId}),
             });
@@ -66,7 +66,7 @@ const StoreContextProvider = (props) => {
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
-                    'authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${token}`,
                 },
                 body:JSON.stringify({'itemId':itemId}),
             });

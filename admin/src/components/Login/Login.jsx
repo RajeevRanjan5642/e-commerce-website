@@ -14,7 +14,7 @@ const Login = ()=>{
         password:"",
     });
     const onChangeHandler = (e)=>{
-        setFormData((formdata)=>({...formData,[e.target.name]:e.target.value}));
+        setFormData((formData)=>({...formData,[e.target.name]:e.target.value}));
     };
     const onLogin = async (e)=>{
         e.preventDefault();
