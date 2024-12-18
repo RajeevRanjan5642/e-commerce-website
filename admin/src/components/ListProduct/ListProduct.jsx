@@ -32,8 +32,8 @@ const ListProduct = () => {
         const json = await response.json();
         if(!response.ok) toast.error(json.error);
         else {
-            toast.success("Product removed");
             await fetchInfo();
+            toast.success("Product removed");
         }
     }
 
