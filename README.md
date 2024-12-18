@@ -88,5 +88,8 @@ Admin Panel :
 
 🔗 https://fashionfrenzy-admin.vercel.app/
 
+## Project Demo
+https://github.com/user-attachments/assets/0ecad844-b3bf-435e-a53e-00a4b3aa5066
+
 
 
