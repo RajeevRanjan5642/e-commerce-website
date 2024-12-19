@@ -3,7 +3,7 @@
 ## FashionFrenzy
 
 ## Overview 
-FashionFrenzy is a comprehensive full-stack web application developed using MERN stack. It designed to provide a seamless and intuitive online shopping experience for clothes.
+FashionFrenzy is an e-commerce web application developed using MERN stack. It designed to provide a seamless and intuitive online shopping experience for clothes.
 
 ## Features ⚙️
 - <b>User Authentication:</b> Secure user registration and login using JWT authentication.
