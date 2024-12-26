@@ -55,7 +55,6 @@ const LoginSignup = () => {
     }
 
     return (
-        <div className="loginsignup">
             <div className="loginsignup-container">
                 <h1>{state}</h1>
                 <div className="loginsignup-fields">
@@ -72,7 +71,6 @@ const LoginSignup = () => {
                     Create an account? <span onClick={()=>{setState("Sign Up")}}>Click Here</span><br></br>
                 </p>}
             </div>
-        </div>
      );
 }
  
