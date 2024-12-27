@@ -5,7 +5,7 @@ const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
-const subscriberRoutes = require("./routes/subscriberRoutes")
+const subscriberRoutes = require("./routes/subscriberRoutes");
 
 const connectDB = require("./db");
 
@@ -17,15 +17,19 @@ const port = process.env.PORT || 4000;
 
 //middleware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+  })
+);
 
 //api endpoints
 app.use("/images", express.static("upload/images"));
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
-app.use("/api/orders",orderRoutes);
-app.use("/api/subscribers",subscriberRoutes)
+app.use("/api/orders", orderRoutes);
+app.use("/api/subscribers", subscriberRoutes);
 
 //error handling middleware
 app.use((err, req, res, next) => {
