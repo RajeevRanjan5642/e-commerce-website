@@ -3,18 +3,16 @@ const multer = require("multer");
 const path = require("path");
 const productController = require("./../controllers/productController");
 const authMiddleware = require("./../middleware/authMiddleware");
+const {CloudinaryStorage} = require("multer-storage-cloudinary");
 
 const router = express.Router();
 
 // image storage engine
-const storage = multer.diskStorage({
-  destination: "./upload/images",
-  filename: (req, file, cb) => {
-    return cb(
-      null,
-      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
+const storage = new CloudinaryStorage({
+  cloudinary:cloudinary,
+  params:{
+    folder:"images",
+  }
 });
 
 const upload = multer({ storage: storage });
