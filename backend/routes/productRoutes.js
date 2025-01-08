@@ -4,6 +4,7 @@ const path = require("path");
 const productController = require("./../controllers/productController");
 const authMiddleware = require("./../middleware/authMiddleware");
 const {CloudinaryStorage} = require("multer-storage-cloudinary");
+const cloudinary = require("./../utils/cloudinary")
 
 const router = express.Router();
 
