@@ -39,7 +39,7 @@ const ProductDisplay = (props) => {
                    </div>
                 </div>
                 <div className="productdisplay-right-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quibusdam, nemo rerum hic nesciunt voluptates possimus reiciendis porro voluptatibus iusto sed qui expedita iure aut.
+                Experience the perfect blend of style and comfort with our Classic Comfort Garment. Crafted from high-quality, breathable fabric, this cloth offers an incredibly soft touch against your skin. Available in a wide range of vibrant colors and sizes, this is a must-have staple in any wardrobe.
                 </div>
                 <div className="productdisplay-right-size">
                     <h1>Select Size</h1>
